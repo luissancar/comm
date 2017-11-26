@@ -12,20 +12,30 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(REC, GPIO.IN)
 GPIO.setup(CLOCK, GPIO.IN)
 cod = Codigos()
-a = "b"
+
 
 ##primera, segunda =cod.getCodigoSecuencia(a)
 ##print(primera)
 ##print(segunda)
 
-print(cod.getCaracter("00"))
+
 
 print("Recibe")
 while True:
-    if GPIO.input(CLOCK) == GPIO.LOW:
-        print("Recibe LOW")
-    else:
-        print("Recibe HIGH")
-    time.sleep(1)
+    caracter=""
+    while GPIO.input(CLOCK) == GPIO.LOW:
+        pass
+    for i in range(2):
+        if GPIO.input(REC) == GPIO.LOW:
+            caracter+="0"
+            print("Recibe 0")
+        else:
+            caracter += "1"
+            print("Recibe 1")
+        while GPIO.input(CLOCK) == GPIO.HIGH:
+            pass
+    print(cod.getCaracter(caracter))
+
+
 
 GPIO.cleanup()
