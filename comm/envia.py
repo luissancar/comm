@@ -14,19 +14,21 @@ GPIO.setup(CLOCK, GPIO.OUT)
 def enviar(dato):
     cod=Codigos()
     first, second=cod.getCodigoSecuencia(dato)
-    print("envio "+first)
     if first == "0":
         GPIO.output(ENV, GPIO.LOW)
+        print("envio 0")
     else:
         GPIO.output(ENV, GPIO.HIGH)
+        print("envio 1")
     GPIO.output(CLOCK, GPIO.HIGH)
     time.sleep(0.5)
     GPIO.output(CLOCK, GPIO.LOW)
-    print("envio "+second)
     if second == "0":
         GPIO.output(ENV, GPIO.LOW)
+        print("envio 0")
     else:
         GPIO.output(ENV, GPIO.HIGH)
+        print("envio 1")
     GPIO.output(CLOCK, GPIO.HIGH)
     time.sleep(0.5)
     GPIO.output(CLOCK, GPIO.LOW)
@@ -37,7 +39,7 @@ def enviar(dato):
 
 
 
-while True
+while True:
 
 
     ## Python 2.7 raw_input

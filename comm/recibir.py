@@ -32,6 +32,7 @@ while True:
         else:
             caracter += "1"
             print("Recibe 1")
+        time.sleep(0.1)
         while GPIO.input(CLOCK) == GPIO.HIGH:
             pass
     print(cod.getCaracter(caracter))
