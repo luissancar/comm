@@ -1,5 +1,5 @@
 class Codigos:
-	codigo = {'a': '00', 'b': '01'}
+	codigo = {'a': '00', 'b': '01','c': '10', 'd': '11'}
 	
 	def getCodigo(self, cod):
 		return self.codigo[cod]

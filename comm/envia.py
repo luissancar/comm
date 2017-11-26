@@ -1,7 +1,7 @@
 import time
 
 import RPi.GPIO as GPIO
-from comm.codigos import  *
+from codigos import  *
 
 
 ENV=23
@@ -37,14 +37,20 @@ def enviar(dato):
 
 
 
-while True:
-    dato=input("introducir dato (a,b,c,d) f=fin -> ")
+while True
+
+
+    ## Python 2.7 raw_input
+    ## Python 3 input
+    dato=str(raw_input("introducir dato (a,b,c,d) f=fin -> "))
+    ##dato = str(input("introducir dato (a,b,c,d) f=fin -> "))
+
     if dato == "f":
         break
     if dato in ("a","b","c","d"):
         enviar(dato)
     else:
         print("Introducia a,b,c,d o f")
-   
+
 
 GPIO.cleanup()

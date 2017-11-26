@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from comm.codigos import  *
+from codigos import  *
 
 
 
