@@ -1,6 +1,8 @@
-import RPi.GPIO as GPIO
 import time
-import codigos
+
+import RPi.GPIO as GPIO
+from comm.codigos import  *
+
 
 ENV=23
 CLOCK=24
@@ -9,17 +11,40 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(ENV, GPIO.OUT)
 GPIO.setup(CLOCK, GPIO.OUT)
 
-
-
-print("Envia")
-while True:
-	
+def enviar(dato):
+    cod=Codigos()
+    first, second=cod.getCodigoSecuencia(dato)
+    print("envio "+first)
+    if first == "0":
+        GPIO.output(ENV, GPIO.LOW)
+    else:
+        GPIO.output(ENV, GPIO.HIGH)
     GPIO.output(CLOCK, GPIO.HIGH)
-    print("Envia HIGH")
-    time.sleep(1)
+    time.sleep(0.5)
     GPIO.output(CLOCK, GPIO.LOW)
-    print("Envia LOW")
-    time.sleep(1)
+    print("envio "+second)
+    if second == "0":
+        GPIO.output(ENV, GPIO.LOW)
+    else:
+        GPIO.output(ENV, GPIO.HIGH)
+    GPIO.output(CLOCK, GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(CLOCK, GPIO.LOW)
+
+
+
+
+
+
+
+while True:
+    dato=input("introducir dato (a,b,c,d) f=fin -> ")
+    if dato == "f":
+        break
+    if dato in ("a","b","c","d"):
+        enviar(dato)
+    else:
+        print("Introducia a,b,c,d o f")
    
 
 GPIO.cleanup()
