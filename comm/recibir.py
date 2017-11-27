@@ -23,9 +23,9 @@ cod = Codigos()
 print("Recibe")
 while True:
     caracter=""
-    while GPIO.input(CLOCK) == GPIO.LOW:
-        pass
     for i in range(2):
+        while GPIO.input(CLOCK) == GPIO.LOW:
+        pass
         if GPIO.input(REC) == GPIO.LOW:
             caracter+="0"
             print("Recibe 0")
